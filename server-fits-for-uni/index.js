@@ -17,7 +17,7 @@ import orderRouter from './route/order.route.js'
 
 const app = express()
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow requests from this origin
+    origin: process.env.FRONTEND_URL, // Allow requests from this origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
     credentials: true, // If cookies or credentials are required
 }));
