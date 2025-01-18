@@ -37,13 +37,6 @@ app.get("/",(request,response)=>{
     })
 })
 
-app.get("/", async(request, response) => {
-    try {
-        response.send({message : "Hii!"});
-    } catch (error) {
-        response.send({error : "hlo"});
-    }
-})
 app.use('/api/user',userRouter)
 app.use("/api/category",categoryRouter)
 app.use("/api/file",uploadRouter)
