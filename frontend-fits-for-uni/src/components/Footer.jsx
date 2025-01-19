@@ -7,8 +7,6 @@ const Footer = () => {
   return (
     <footer className='bg-gray-900 text-white py-3'>
         <div className='container mx-auto px-4 text-center flex flex-col lg:flex-row lg:justify-between items-center gap-6'>
-            <p className='text-xs lg:text-sm opacity-80 hover:opacity-100'>© All Rights Reserved 2024.</p>
-
             <div className='flex items-center gap-8 justify-center text-xl'>
                 <a href='https://www.facebook.com/pctegroup/' className='text-red-500 hover:text-red-300 transition-all duration-300'>
                     <FaFacebook />
