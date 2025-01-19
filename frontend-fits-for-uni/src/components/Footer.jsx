@@ -1,28 +1,28 @@
-import React from 'react'
+import React from 'react';
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className='border-t'>
-        <div className='container mx-auto p-4 text-center flex flex-col lg:flex-row lg:justify-between gap-2'>
-            <p>© All Rights Reserved 2024.</p>
+    <footer className='bg-gray-900 text-white py-3'>
+        <div className='container mx-auto px-4 text-center flex flex-col lg:flex-row lg:justify-between items-center gap-6'>
+            <p className='text-xs lg:text-sm opacity-80 hover:opacity-100'>© All Rights Reserved 2024.</p>
 
-            <div className='flex items-center gap-4 justify-center text-2xl'>
-                <a href='' className='hover:text-primary-100'>
-                    <FaFacebook/>
+            <div className='flex items-center gap-8 justify-center text-xl'>
+                <a href='https://www.facebook.com/pctegroup/' className='text-red-500 hover:text-red-300 transition-all duration-300'>
+                    <FaFacebook />
                 </a>
-                <a href='' className='hover:text-primary-100'>
-                    <FaInstagram/>
+                <a href='https://www.instagram.com/pcteofficial/?hl=en' className='text-red-500 hover:text-red-300 transition-all duration-300'>
+                    <FaInstagram />
                 </a>
-                <a href='' className='hover:text-primary-100'>
-                    <FaLinkedin/>
+                <a href='https://www.linkedin.com/school/pcte-ludhiana/posts/?feedView=all' className='text-red-500 hover:text-red-300 transition-all duration-300'>
+                    <FaLinkedin />
                 </a>
             </div>
         </div>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
