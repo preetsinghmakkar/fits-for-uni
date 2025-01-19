@@ -7,9 +7,9 @@ import { v2 as cloudinary } from 'cloudinary';
 // })
 
 cloudinary.config({
-    cloud_name : "do5krinsp",
-    api_key : "671877216649763",
-    api_secret : "surA7UKp8YMeAK4cDSzK1c1HP1M"
+    cloud_name : "dfel75ojr",
+    api_key : "631299454141755",
+    api_secret : "e_BbD_-JecrtIr5iLY6Edfp_rXM"
 })
 
 const uploadImageClodinary = async(image)=>{
