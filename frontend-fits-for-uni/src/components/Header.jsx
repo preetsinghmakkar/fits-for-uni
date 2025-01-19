@@ -69,7 +69,7 @@ const Header = () => {
               </div>
               {/* Logo Text */}
               <h1 className="text-2xl lg:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-blue-600 to-purple-600">
-                Fits for Uni
+                Fits For Uni
               </h1>
             </Link>
           </div>
