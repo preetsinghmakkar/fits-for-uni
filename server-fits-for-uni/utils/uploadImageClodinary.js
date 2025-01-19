@@ -6,6 +6,16 @@ cloudinary.config({
     api_secret : process.env.CLODINARY_API_SECRET_KEY
 })
 
+// CLODINARY_CLOUD_NAME=dfel75ojr
+// CLODINARY_API_KEY=631299454141755
+// CLODINARY_API_SECRET_KEY=JecrtIr5iLY6Edfp_rXM
+cloudinary.config({
+    cloud_name : "dfel75ojr",
+    api_key : "631299454141755",
+    api_secret : "e_BbD_-JecrtIr5iLY6Edfp_rXM"
+})
+
+
 const uploadImageClodinary = async(image)=>{
     const buffer = image?.buffer || Buffer.from(await image.arrayBuffer())
 
