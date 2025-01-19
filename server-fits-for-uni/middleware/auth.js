@@ -10,7 +10,9 @@ const auth = async(request,response,next)=>{
             })
         }
 
-        const decode = await jwt.verify(token,process.env.SECRET_KEY_ACCESS_TOKEN)
+        // const decode = await jwt.verify(token,process.env.SECRET_KEY_ACCESS_TOKEN)
+
+        const decode = await jwt.verify(token,c559e9117bea57fa7f2379c909759248ca7c419945ef519b614a5314d8b8c246)
 
         if(!decode){
             return response.status(401).json({
