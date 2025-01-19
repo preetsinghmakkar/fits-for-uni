@@ -11,17 +11,29 @@ cloudinary.config({
     api_key : "631299454141755",
     api_secret : "e_BbD_-JecrtIr5iLY6Edfp_rXM"
 })
+const uploadImageClodinary = async (image) => {
+    try {
+        const buffer = Buffer.isBuffer(image)
+            ? image
+            : Buffer.from(await image.arrayBuffer());
 
-const uploadImageClodinary = async(image)=>{
-    const buffer = image?.buffer || Buffer.from(await image.arrayBuffer())
+        const uploadImage = await new Promise((resolve, reject) => {
+            cloudinary.uploader.upload_stream(
+                { folder: "binkeyit" },
+                (error, uploadResult) => {
+                    if (error) {
+                        return reject(error); // Reject on error
+                    }
+                    resolve(uploadResult);
+                }
+            ).end(buffer);
+        });
 
-    const uploadImage = await new Promise((resolve,reject)=>{
-        cloudinary.uploader.upload_stream({ folder : "binkeyit"},(error,uploadResult)=>{
-            return resolve(uploadResult)
-        }).end(buffer)
-    })
-
-    return uploadImage
-}
+        return uploadImage;
+    } catch (error) {
+        console.error("Cloudinary upload failed:", error);
+        throw new Error("Image upload failed");
+    }
+};
 
 export default uploadImageClodinary
