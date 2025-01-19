@@ -2,9 +2,11 @@ import uploadImageClodinary from "../utils/uploadImageClodinary.js"
 
 const uploadImageController = async(request,response)=>{
     try {
-        const file = request.file
+        // const file = request.file
 
-        const uploadImage = await uploadImageClodinary(file)
+        const uploadImage = "image uploading"; 
+        
+        //await uploadImageClodinary(file)
 
         return response.json({
             message : "Upload done",
