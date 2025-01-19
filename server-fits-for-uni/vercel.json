@@ -1,16 +1,26 @@
 {
-    "version" : 2,
-    "name" : "Fits For Uni",
-    "builds" : [
+    "version": 2,
+    "name": "Fits For Uni",
+    "builds": [
         {
-            "src" : "./index.js",
-            "use" : "@vercel/node"
+            "src": "./index.js",
+            "use": "@vercel/node"
         }
     ],
-    "routes" : [
+    "routes": [
         {
-            "src" : "/(.*)",
-            "dest" : "/"
+            "src": "/api/(.*)",
+            "dest": "/index.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/"
         }
-    ]
+    ],
+    "functions": {
+        "api/*": {
+            "memory": 256, 
+            "maxDuration": 10 
+        }
+    }
 }
