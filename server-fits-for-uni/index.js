@@ -54,5 +54,3 @@ connectDB().then(() => {
     console.error("Error connecting to the database:", error);
 });
 
-})
-
