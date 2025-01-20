@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/logo.png";
-import logoHeader from "../assets/logoHeader.png";
+import logoAndNameImage from "../assets/logo-and-name.png";
+
 import Search from "./Search";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegCircleUser } from "react-icons/fa6";
@@ -21,8 +21,6 @@ const Header = () => {
   const user = useSelector((state) => state?.user);
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const cartItem = useSelector((state) => state.cartItem.cart);
-  // const [totalPrice,setTotalPrice] = useState(0)
-  // const [totalQty,setTotalQty] = useState(0)
   const { totalPrice, totalQty } = useGlobalContext();
   const [openCartSection, setOpenCartSection] = useState(false);
 
@@ -39,114 +37,102 @@ const Header = () => {
       navigate("/login");
       return;
     }
-
     navigate("/user");
   };
 
-  //total item and total price
-  // useEffect(()=>{
-  //     const qty = cartItem.reduce((preve,curr)=>{
-  //         return preve + curr.quantity
-  //     },0)
-  //     setTotalQty(qty)
-
-  //     const tPrice = cartItem.reduce((preve,curr)=>{
-  //         return preve + (curr.productId.price * curr.quantity)
-  //     },0)
-  //     setTotalPrice(tPrice)
-
-  // },[cartItem])
-
   return (
-    <header className="h-24 lg:h-20 lg:shadow-md sticky top-0 z-40 flex flex-col justify-center gap-1 bg-white">
-      {!(isSearchPage && isMobile) && (
-        <div className="container mx-auto flex items-center px-2 justify-between">
-          {/**logo */}
-          <div className="h-full">
-            <Link to={"/"} className="flex items-center gap-2">
-              {/* Logo Icon */}
-              <img
-                src={logoHeader}
-                alt="Icon Description"
-                className="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 via-blue-500 to-purple-500"
-              />
+    <header className="sticky top-0 z-40 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 shadow-lg before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.8),transparent)] before:z-0">
+      <div className="h-28 lg:h-32 flex flex-col justify-center relative">
+        {!(isSearchPage && isMobile) && (
+          <div className="container mx-auto flex items-center px-6 justify-between relative z-10">
+            {/* Logo and name */}
+            <div className="flex-shrink-0">
+              <Link to="/" className="block">
+                <img
+                  src={logoAndNameImage}
+                  alt="Logo and Name"
+                  className="h-20 lg:h-24 w-auto transition-transform hover:scale-105 drop-shadow-lg"
+                />
+              </Link>
+            </div>
 
-              {/* Logo Text */}
-              <h1 className="text-2xl lg:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-blue-600 to-purple-600">
-                Fits For PCTE
-              </h1>
-            </Link>
-          </div>
+            {/* Search */}
+            <div className="hidden lg:block flex-grow max-w-2xl mx-8">
+              <Search />
+            </div>
 
-          {/**Search */}
-          <div className="hidden lg:block">
-            <Search />
-          </div>
+            {/* Login and Cart */}
+            <div className="flex items-center gap-4">
+              {/* Mobile User Icon */}
+              <button
+                className="text-red-800 hover:text-red-600 transition-colors lg:hidden"
+                onClick={handleMobileUser}
+              >
+                <FaRegCircleUser size={28} />
+              </button>
 
-          {/**login and my cart */}
-          <div className="">
-            {/**user icons display in only mobile version**/}
-            <button
-              className="text-neutral-600 lg:hidden"
-              onClick={handleMobileUser}
-            >
-              <FaRegCircleUser size={26} />
-            </button>
-
-            {/**Desktop**/}
-            <div className="hidden lg:flex  items-center gap-10">
-              {user?._id ? (
-                <div className="relative">
-                  <div
-                    onClick={() => setOpenUserMenu((preve) => !preve)}
-                    className="flex select-none items-center gap-1 cursor-pointer"
-                  >
-                    <p>Account</p>
-                    {openUserMenu ? (
-                      <GoTriangleUp size={25} />
-                    ) : (
-                      <GoTriangleDown size={25} />
+              {/* Desktop */}
+              <div className="hidden lg:flex items-center gap-6">
+                {user?._id ? (
+                  <div className="relative">
+                    <div
+                      onClick={() => setOpenUserMenu((prev) => !prev)}
+                      className="flex items-center gap-2 cursor-pointer px-4 py-2.5 rounded-lg hover:bg-white/50 transition-all duration-300"
+                    >
+                      <p className="text-gray-800 font-medium">Account</p>
+                      {openUserMenu ? (
+                        <GoTriangleUp size={20} className="text-gray-600" />
+                      ) : (
+                        <GoTriangleDown size={20} className="text-gray-600" />
+                      )}
+                    </div>
+                    {openUserMenu && (
+                      <div className="absolute right-0 top-12">
+                        <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-4 min-w-56 border border-gray-100">
+                          <UserMenu close={handleCloseUserMenu} />
+                        </div>
+                      </div>
                     )}
                   </div>
-                  {openUserMenu && (
-                    <div className="absolute right-0 top-12">
-                      <div className="bg-white rounded p-4 min-w-52 lg:shadow-lg">
-                        <UserMenu close={handleCloseUserMenu} />
+                ) : (
+                  <button
+                    onClick={redirectToLoginPage}
+                    className="text-base px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-red-700 transition-all duration-300 font-medium shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                  >
+                    Login
+                  </button>
+                )}
+                <button
+                  onClick={() => setOpenCartSection(true)}
+                  className="flex items-center gap-3 bg-gray-800/90 backdrop-blur-sm hover:bg-gray-700 px-5 py-3 rounded-lg text-white transition-all duration-300 transform hover:-translate-y-0.5 shadow-md hover:shadow-lg"
+                >
+                  <div className="relative">
+                    <BsCart4 size={24} className="transform hover:scale-110 transition-transform" />
+                    {totalQty > 0 && (
+                      <span className="absolute -top-2 -right-2 bg-red-800 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
+                        {totalQty}
+                      </span>
+                    )}
+                  </div>
+                  <div className="font-medium">
+                    {cartItem[0] ? (
+                      <div>
+                        <p className="text-sm">{totalQty} Items</p>
+                        <p className="text-sm">{DisplayPriceInRupees(totalPrice)}</p>
                       </div>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <button onClick={redirectToLoginPage} className="text-lg px-2">
-                  Login
+                    ) : (
+                      <p>My Cart</p>
+                    )}
+                  </div>
                 </button>
-              )}
-              <button
-                onClick={() => setOpenCartSection(true)}
-                className="flex items-center gap-2 bg-green-800 hover:bg-green-700 px-3 py-2 rounded text-white"
-              >
-                {/**add to card icons */}
-                <div className="animate-bounce">
-                  <BsCart4 size={26} />
-                </div>
-                <div className="font-semibold text-sm">
-                  {cartItem[0] ? (
-                    <div>
-                      <p>{totalQty} Items</p>
-                      <p>{DisplayPriceInRupees(totalPrice)}</p>
-                    </div>
-                  ) : (
-                    <p>My Cart</p>
-                  )}
-                </div>
-              </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div className="container mx-auto px-2 lg:hidden">
-        <Search />
+        <div className="container mx-auto px-6 lg:hidden mt-2 relative z-10">
+          <Search />
+        </div>
       </div>
 
       {openCartSection && (
