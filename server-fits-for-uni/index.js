@@ -20,6 +20,7 @@ app.use(cors({
     origin: process.env.FRONTEND_URL, // Allow requests from this origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
     credentials: true, // If cookies or credentials are required
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json())
 app.use(cookieParser())
