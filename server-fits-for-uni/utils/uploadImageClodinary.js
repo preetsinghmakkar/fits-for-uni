@@ -1,14 +1,11 @@
 import { v2 as cloudinary } from 'cloudinary';
 
-cloudinary.config({
-    cloud_name : process.env.CLODINARY_CLOUD_NAME,
-    api_key : process.env.CLODINARY_API_KEY,
-    api_secret : process.env.CLODINARY_API_SECRET_KEY
-})
+// cloudinary.config({
+//     cloud_name : process.env.CLODINARY_CLOUD_NAME,
+//     api_key : process.env.CLODINARY_API_KEY,
+//     api_secret : process.env.CLODINARY_API_SECRET_KEY
+// })
 
-// CLODINARY_CLOUD_NAME=dfel75ojr
-// CLODINARY_API_KEY=631299454141755
-// CLODINARY_API_SECRET_KEY=JecrtIr5iLY6Edfp_rXM
 cloudinary.config({
     cloud_name : "dfel75ojr",
     api_key : "631299454141755",
