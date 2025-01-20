@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
+import logoHeader from "../assets/logoHeader.png";
 import Search from "./Search";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegCircleUser } from "react-icons/fa6";
@@ -64,11 +65,12 @@ const Header = () => {
           <div className="h-full">
             <Link to={"/"} className="flex items-center gap-2">
               {/* Logo Icon */}
-              <img 
-                src="src/assets/logoHeader.png" 
-                alt="Icon Description" 
-                className="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 via-blue-500 to-purple-500" 
+              <img
+                src={logoHeader}
+                alt="Icon Description"
+                className="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 via-blue-500 to-purple-500"
               />
+
               {/* Logo Text */}
               <h1 className="text-2xl lg:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-blue-600 to-purple-600">
                 Fits For PCTE
