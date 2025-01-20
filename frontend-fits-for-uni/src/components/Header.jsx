@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logoAndNameImage from "../assets/logo-and-name.png";
+
 import Search from "./Search";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegCircleUser } from "react-icons/fa6";

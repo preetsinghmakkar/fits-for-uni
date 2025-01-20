@@ -20,6 +20,7 @@ app.use(cors({
     origin: process.env.FRONTEND_URL, // Allow requests from this origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
     credentials: true, // If cookies or credentials are required
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json())
 app.use(cookieParser())
@@ -28,7 +29,7 @@ app.use(helmet({
     crossOriginResourcePolicy : false
 }))
 
-const PORT = 8080 || process.env.PORT 
+const PORT = process.env.PORT || 8080;
 
 app.get("/",(request,response)=>{
     ///server to client
@@ -46,9 +47,11 @@ app.use("/api/cart",cartRouter)
 app.use("/api/address",addressRouter)
 app.use('/api/order',orderRouter)
 
-connectDB().then(()=>{
-    app.listen(PORT,()=>{
-        console.log("Server is running",PORT)
-    })
-})
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log("Server is running", PORT);
+    });
+}).catch((error) => {
+    console.error("Error connecting to the database:", error);
+});
 
