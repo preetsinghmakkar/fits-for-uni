@@ -30,7 +30,7 @@ const productSchema = new mongoose.Schema({
     },
     price : {
         type : Number,
-        defualt : null
+        default : null
     },
     discount : {
         type : Number,
@@ -61,6 +61,7 @@ productSchema.index({
     description : 5
 })
 
+productSchema.cre
 
 const ProductModel = mongoose.model('product',productSchema)
 
