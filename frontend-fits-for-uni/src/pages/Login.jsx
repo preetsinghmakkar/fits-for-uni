@@ -21,7 +21,6 @@ const Login = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target
-
         setData((preve) => {
             return {
                 ...preve,
@@ -32,10 +31,8 @@ const Login = () => {
 
     const valideValue = Object.values(data).every(el => el)
 
-
-    const handleSubmit = async(e)=>{
+    const handleSubmit = async(e) => {
         e.preventDefault()
-
         try {
             const response = await Axios({
                 ...SummaryApi.login,
@@ -60,62 +57,91 @@ const Login = () => {
                 })
                 navigate("/")
             }
-
         } catch (error) {
             AxiosToastError(error)
         }
-
-
-
     }
-    return (
-        <section className='w-full container mx-auto px-2'>
-            <div className='bg-white my-4 w-full max-w-lg mx-auto rounded p-7'>
 
-                <form className='grid gap-4 py-4' onSubmit={handleSubmit}>
-                    <div className='grid gap-1'>
-                        <label htmlFor='email'>Email :</label>
+    return (
+        <section className='min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200'>
+            <div className='bg-white/80 backdrop-blur-sm w-full max-w-md mx-4 rounded-2xl shadow-xl p-8'>
+                {/* Header */}
+                <div className='text-center mb-8'>
+                    <h1 className='text-3xl font-bold text-gray-800 mb-2'>Welcome Back</h1>
+                    <p className='text-gray-600'>Please sign in to continue</p>
+                </div>
+
+                <form className='space-y-6' onSubmit={handleSubmit}>
+                    <div className='space-y-2'>
+                        <label htmlFor='email' className='text-sm font-medium text-gray-700'>
+                            Email Address
+                        </label>
                         <input
                             type='email'
                             id='email'
-                            className='bg-blue-50 p-2 border rounded outline-none focus:border-primary-200'
+                            className='w-full px-4 py-3 rounded-lg bg-white/50 border border-gray-300 
+                                     focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all duration-200 outline-none'
                             name='email'
                             value={data.email}
                             onChange={handleChange}
                             placeholder='Enter your email'
                         />
                     </div>
-                    <div className='grid gap-1'>
-                        <label htmlFor='password'>Password :</label>
-                        <div className='bg-blue-50 p-2 border rounded flex items-center focus-within:border-primary-200'>
+
+                    <div className='space-y-2'>
+                        <label htmlFor='password' className='text-sm font-medium text-gray-700'>
+                            Password
+                        </label>
+                        <div className='relative group'>
                             <input
                                 type={showPassword ? "text" : "password"}
                                 id='password'
-                                className='w-full outline-none'
+                                className='w-full px-4 py-3 rounded-lg bg-white/50 border border-gray-300 
+                                         focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all duration-200 outline-none'
                                 name='password'
                                 value={data.password}
                                 onChange={handleChange}
                                 placeholder='Enter your password'
                             />
-                            <div onClick={() => setShowPassword(preve => !preve)} className='cursor-pointer'>
-                                {
-                                    showPassword ? (
-                                        <FaRegEye />
-                                    ) : (
-                                        <FaRegEyeSlash />
-                                    )
-                                }
-                            </div>
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(prev => !prev)}
+                                className='absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 
+                                         hover:text-gray-700 transition-colors'
+                            >
+                                {showPassword ? <FaRegEye size={20} /> : <FaRegEyeSlash size={20} />}
+                            </button>
                         </div>
-                        <Link to={"/forgot-password"} className='block ml-auto hover:text-primary-200'>Forgot password ?</Link>
+                        <Link 
+                            to="/forgot-password"
+                            className='block text-right text-sm text-red-600 hover:text-red-700 transition-colors'
+                        >
+                            Forgot password?
+                        </Link>
                     </div>
-    
-                    <button disabled={!valideValue} className={` ${valideValue ? "bg-green-800 hover:bg-green-700" : "bg-gray-500" }    text-white py-2 rounded font-semibold my-3 tracking-wide`}>Login</button>
 
+                    <button
+                        disabled={!valideValue}
+                        className={`
+                            w-full py-3 px-4 rounded-lg font-semibold text-sm transition-all duration-200
+                            ${valideValue 
+                                ? "bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-red-600/30" 
+                                : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                            }
+                        `}
+                    >
+                        Sign In
+                    </button>
                 </form>
 
-                <p>
-                    Don't have account? <Link to={"/register"} className='font-semibold text-green-700 hover:text-green-800'>Register</Link>
+                <p className='mt-8 text-center text-gray-600'>
+                    Don't have an account?{' '}
+                    <Link 
+                        to="/register"
+                        className='font-semibold text-red-600 hover:text-red-700 transition-colors'
+                    >
+                        Register
+                    </Link>
                 </p>
             </div>
         </section>
@@ -123,4 +149,3 @@ const Login = () => {
 }
 
 export default Login
-
