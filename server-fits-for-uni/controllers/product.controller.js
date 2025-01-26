@@ -15,7 +15,7 @@ export const createProductController = async(request,response)=>{
             more_details,
         } = request.body 
 
-        if(!name || !image[0] || !category[0] || !subCategory[0] || !unit || !price || !description ){
+        if(!name || !image[0] || !category[0] || !subCategory[0] || !unit ||  !description ){
             return response.status(400).json({
                 message : "Enter required fields",
                 error : true,

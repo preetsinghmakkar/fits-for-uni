@@ -103,10 +103,7 @@ const ProductDisplayPage = () => {
             </div>
 
             <div className='my-4  hidden lg:grid gap-3 '>
-                <div>
-                    <p className='font-semibold'>Description</p>
-                    <p className='text-base'>{data.description}</p>
-                </div>
+                
                 <div>
                     <p className='font-semibold'>Unit</p>
                     <p className='text-base'>{data.unit}</p>
@@ -126,31 +123,10 @@ const ProductDisplayPage = () => {
 
 
         <div className='p-4 lg:pl-7 text-base lg:text-lg'>
-            <p className='bg-green-300 w-fit px-2 rounded-full'>10 Min</p>
             <h2 className='text-lg font-semibold lg:text-3xl'>{data.name}</h2>  
             <p className=''>{data.unit}</p> 
             <Divider/>
-            <div>
-              <p className=''>Price</p> 
-              <div className='flex items-center gap-2 lg:gap-4'>
-                <div className='border border-green-600 px-4 py-2 rounded bg-green-50 w-fit'>
-                    <p className='font-semibold text-lg lg:text-xl'>{DisplayPriceInRupees(pricewithDiscount(data.price,data.discount))}</p>
-                </div>
-                {
-                  data.discount && (
-                    <p className='line-through'>{DisplayPriceInRupees(data.price)}</p>
-                  )
-                }
-                {
-                  data.discount && (
-                    <p className="font-bold text-green-600 lg:text-2xl">{data.discount}% <span className='text-base text-neutral-500'>Discount</span></p>
-                  )
-                }
-                
-              </div>
-
-            </div> 
-              
+       
               {
                 data.stock === 0 ? (
                   <p className='text-lg text-red-500 my-2'>Out of Stock</p>
