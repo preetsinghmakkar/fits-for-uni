@@ -28,7 +28,9 @@ const Home = () => {
    return (
     <section className='bg-gray-50'>
        <div className='container mx-auto'>
+
            <div className={`w-full h-full min-h-48 bg-red-50 rounded-lg shadow-md overflow-hidden ${!banner && "animate-pulse my-2" } `}>
+           
                <img
                  src={banner}
                  className='w-full h-full hidden lg:block object-cover'
@@ -41,41 +43,50 @@ const Home = () => {
                 />
            </div>
        </div>
+       <div className='text-center text-3xl  text-gray-700 font-semibold mt-3 '>
+                Departments
+              </div>
 
-       <div className='container mx-auto px-4 my-2 grid grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-2'>
-           {
-             loadingCategory ? (
-               new Array(12).fill(null).map((c,index)=>{
-                 return(
-                   <div key={index+"loadingcategory"} className='bg-white rounded-lg p-4 min-h-36 grid gap-2 shadow-md animate-pulse'>
-                     <div className='bg-red-100 min-h-24 rounded-md'></div>
-                     <div className='bg-red-100 h-8 rounded-md'></div>
-                   </div>
-                 )
-               })
-             ) : (
-               categoryData.map((cat,index)=>{
-                 return(
-                   <div 
-                     key={cat._id+"displayCategory"} 
-                     className='w-full h-full cursor-pointer hover:bg-red-50 transition-all rounded-lg p-2'
-                     onClick={()=>handleRedirectProductListpage(cat._id,cat.name)}
-                   >
-                     <div className='border border-gray-200 rounded-lg p-2 hover:shadow-md'>
-                         <img
-                            src={cat.image}
-                            className='w-full h-full object-scale-down'
-                         />
-                         <p className='text-center text-gray-600 font-medium mt-2'>
-  {cat.name}
-</p>
-                     </div>
-                   </div>
-                 )
-               })
-             )
-           }
-       </div>
+       <div className='container mx-auto px-4 my-2 grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2'>
+  {
+    loadingCategory ? (
+      new Array(12).fill(null).map((c, index) => {
+        return (
+          <div key={index + "loadingcategory"} className='bg-white rounded-lg p-4 min-h-36 grid gap-2 shadow-md animate-pulse'>
+            <div className='bg-red-100 min-h-24 rounded-md'></div>
+            <div className='bg-red-100 h-8 rounded-md'></div>
+          </div>
+        )
+      })
+    ) : (
+      categoryData.map((cat, index) => {
+        return (
+          <div 
+            key={cat._id + "displayCategory"} 
+            className='w-full h-full cursor-pointer hover:bg-red-50 transition-all rounded-lg p-2'
+            onClick={() => handleRedirectProductListpage(cat._id, cat.name)}
+          >
+            <div className='bg-gray-100 border border-gray-200 rounded-lg p-4 hover:shadow-md flex flex-col'>
+              <div className='w-full h-48 overflow-hidden rounded-lg'>
+                <img
+                  src={cat.image}
+                  className='w-full h-full object-cover rounded-md'
+                />
+              </div>
+              <p className='text-center text-gray-700 font-semibold mt-3'>
+                {cat.name}
+              </p>
+            </div>
+          </div>
+        )
+      })
+    )
+  }
+</div>
+
+
+
+
 
        {/**display category product */}
        {

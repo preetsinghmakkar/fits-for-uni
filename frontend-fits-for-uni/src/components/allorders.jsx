@@ -39,13 +39,12 @@ const AllOrders = () => {
             <th className="px-4 py-2">Order ID</th>
             <th className="px-4 py-2">Username</th>
             <th className="px-4 py-2">Product Name</th>
-            <th className="px-4 py-2">Actions</th>
           </tr>
         </thead>
         <tbody>
           {orders.length === 0 ? (
             <tr>
-              <td colSpan="4" className="px-4 py-2 text-center text-gray-500">No orders available.</td>
+              <td colSpan="3" className="px-4 py-2 text-center text-gray-500">No orders available.</td>
             </tr>
           ) : (
             orders.map((order) => (
@@ -53,9 +52,7 @@ const AllOrders = () => {
                 <td className="px-4 py-2">{order.orderId}</td>
                 <td className="px-4 py-2">{order.username || "Unknown User"}</td> 
                 <td className="px-4 py-2">{order.productName || "Unknown Product"}</td> 
-                <td className="px-4 py-2">
-                  <button className="text-blue-500 hover:underline">View</button>
-                </td>
+              
               </tr>
             ))
           )}

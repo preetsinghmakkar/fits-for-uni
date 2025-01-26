@@ -21,8 +21,7 @@ const UploadProduct = () => {
       subCategory : [],
       unit : "",
       stock : "",
-      price : "",
-      discount : "",
+     
       description : "",
       more_details : {},
   })
@@ -271,7 +270,7 @@ const UploadProduct = () => {
                   </div>
                 </div>
                 <div className='grid gap-1'>
-                  <label className='font-medium'>Sub Category</label>
+                  <label className='font-medium'>Size</label>
                   <div>
                     <select
                       className='bg-blue-50 border w-full p-2 rounded'
@@ -289,7 +288,7 @@ const UploadProduct = () => {
                         setSelectSubCategory("")
                       }}
                     >
-                      <option value={""} className='text-neutral-600'>Select Sub Category</option>
+                      <option value={""} className='text-neutral-600'>Select Size</option>
                       {
                         allSubCategory.map((c,index)=>{
                           return(
@@ -343,33 +342,8 @@ const UploadProduct = () => {
                   />
                 </div>
 
-                <div className='grid gap-1'>
-                  <label htmlFor='price' className='font-medium'>Price</label>
-                  <input 
-                    id='price'
-                    type='number'
-                    placeholder='Enter product price'
-                    name='price'
-                    value={data.price}
-                    onChange={handleChange}
-                    required
-                    className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
-                  />
-                </div>
-
-                <div className='grid gap-1'>
-                  <label htmlFor='discount' className='font-medium'>Discount</label>
-                  <input 
-                    id='discount'
-                    type='number'
-                    placeholder='Enter product discount'
-                    name='discount'
-                    value={data.discount}
-                    onChange={handleChange}
-                    required
-                    className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
-                  />
-                </div>
+              
+               
 
 
                 {/**add more field**/}

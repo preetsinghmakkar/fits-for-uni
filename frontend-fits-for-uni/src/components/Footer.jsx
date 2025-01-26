@@ -17,6 +17,8 @@ const Footer = () => {
                 <a href='https://www.linkedin.com/school/pcte-ludhiana/posts/?feedView=all' className='text-red-500 hover:text-red-300 transition-all duration-300'>
                     <FaLinkedin />
                 </a>
+                <p className='text-center text-xs'>Contact: 0161-2888500
+                      Mail:info@pcte.edu.in</p>
             </div>
         </div>
     </footer>
