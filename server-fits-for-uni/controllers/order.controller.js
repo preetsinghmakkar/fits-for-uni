@@ -206,3 +206,42 @@ export async function getOrderDetailsController(request,response){
         })
     }
 }
+export const getAllOrdersController = async (req, res) => {
+    try {
+        // Fetching all orders and populating related fields (user and product)
+        const orders = await OrderModel.find()
+            .populate('userId', 'name') // Populate only the 'name' field from UserModel
+            .populate('productId', 'name') // Populate only the 'name' field from ProductModel
+            .sort({ createdAt: -1 }); // Sort orders by most recent
+
+        // If no orders found, return a message
+        if (orders.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: 'No orders found'
+            });
+        }
+
+        // Return the orders with populated user and product data
+        return res.status(200).json({
+            success: true,
+            orders: orders.map(order => {
+                const username = order.userId ? order.userId.name : 'Unknown User';
+                const productName = order.productId ? order.productId.name : 'Unknown Product';
+
+                return {
+                    orderId: order.orderId,
+                    username: username,
+                    productName: productName
+                };
+            })
+        });
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Error fetching orders',
+            error: error.message || error
+        });
+    }
+};

@@ -23,7 +23,7 @@ import CartMobile from "../pages/CartMobile";
 import CheckoutPage from "../pages/CheckoutPage";
 import Success from "../pages/Success";
 import Cancel from "../pages/Cancel";
-
+import AllOrders from "../components/allorders";
 const router = createBrowserRouter([
     {
         path : "/",
@@ -92,6 +92,10 @@ const router = createBrowserRouter([
                     {
                         path : 'product',
                         element : <AdminPermision><ProductAdmin/></AdminPermision>
+                    } , 
+                    {
+                        path: "all-orders", // New Route
+                        element: <AdminPermision><AllOrders /></AdminPermision>
                     }
                 ]
             },

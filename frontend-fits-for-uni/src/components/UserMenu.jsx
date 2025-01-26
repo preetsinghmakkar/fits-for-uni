@@ -45,7 +45,7 @@ const UserMenu = ({close}) => {
     <div>
         <div className='font-semibold'>My Account</div>
         <div className='text-sm flex items-center gap-2'>
-          <span className='max-w-52 text-ellipsis line-clamp-1'>{user.name || user.mobile} <span className='text-medium text-red-600'>{user.role === "ADMIN" ? "(Admin)" : "" }</span></span>
+          <span className='max-w-52 text-ellipsis line-clamp-1'>{user.name || user.mobile} <span className='text-medium text-red-600'>{user.role === "ADMIN" ? "(Teacher)" : "" }</span></span>
           <Link onClick={handleClose} to={"/dashboard/profile"} className='hover:text-primary-200'>
             <HiOutlineExternalLink size={15}/>
           </Link>
@@ -77,6 +77,11 @@ const UserMenu = ({close}) => {
                 <Link onClick={handleClose} to={"/dashboard/product"} className='px-2 hover:bg-orange-200 py-1'>Product</Link>
               )
             }
+            {isAdmin(user.role) && ( 
+  <Link onClick={handleClose} to={"/dashboard/all-orders"} className='px-2 hover:bg-orange-200 py-1'>
+    View All Orders
+  </Link>
+)}
 
             <Link onClick={handleClose} to={"/dashboard/myorders"} className='px-2 hover:bg-orange-200 py-1'>My Orders</Link>
 
