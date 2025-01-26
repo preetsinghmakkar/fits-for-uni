@@ -234,7 +234,7 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
 
               </div>
               <div className='grid gap-1'>
-                <label className='font-medium'>Category</label>
+                <label className='font-medium'>Department</label>
                 <div>
                   <select
                     className='bg-blue-50 border w-full p-2 rounded'
@@ -252,7 +252,7 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
                       setSelectCategory("")
                     }}
                   >
-                    <option value={""}>Select Category</option>
+                    <option value={""}>Select Department</option>
                     {
                       allCategory.map((c, index) => {
                         return (
@@ -278,7 +278,7 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
                 </div>
               </div>
               <div className='grid gap-1'>
-                <label className='font-medium'>Sub Category</label>
+                <label className='font-medium'>Sizes</label>
                 <div>
                   <select
                     className='bg-blue-50 border w-full p-2 rounded'
@@ -296,7 +296,7 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
                       setSelectSubCategory("")
                     }}
                   >
-                    <option value={""} className='text-neutral-600'>Select Sub Category</option>
+                    <option value={""} className='text-neutral-600'>Select Sizes</option>
                     {
                       allSubCategory.map((c, index) => {
                         return (

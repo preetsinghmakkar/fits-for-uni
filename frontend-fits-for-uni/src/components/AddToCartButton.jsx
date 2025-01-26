@@ -22,7 +22,6 @@ const AddToCartButton = ({ data }) => {
 
         try {
             setLoading(true)
-
             const response = await Axios({
                 ...SummaryApi.addTocart,
                 data: {
@@ -31,7 +30,6 @@ const AddToCartButton = ({ data }) => {
             })
 
             const { data: responseData } = response
-
             if (responseData.success) {
                 toast.success(responseData.message)
                 if (fetchCartItem) {
@@ -43,10 +41,8 @@ const AddToCartButton = ({ data }) => {
         } finally {
             setLoading(false)
         }
-
     }
 
-    //checking this item in cart or not
     useEffect(() => {
         const checkingitem = cartItem.some(item => item.productId._id === data._id)
         setIsAvailableCart(checkingitem)
@@ -56,16 +52,13 @@ const AddToCartButton = ({ data }) => {
         setCartItemsDetails(product)
     }, [data, cartItem])
 
-
     const increaseQty = async(e) => {
         e.preventDefault()
         e.stopPropagation()
-    
-       const response = await  updateCartItem(cartItemDetails?._id,qty+1)
-        
-       if(response.success){
-        toast.success("Item added")
-       }
+        const response = await updateCartItem(cartItemDetails?._id,qty+1)
+        if(response.success){
+            toast.success("Item added")
+        }
     }
 
     const decreaseQty = async(e) => {
@@ -75,30 +68,38 @@ const AddToCartButton = ({ data }) => {
             deleteCartItem(cartItemDetails?._id)
         }else{
             const response = await updateCartItem(cartItemDetails?._id,qty-1)
-
             if(response.success){
                 toast.success("Item remove")
             }
         }
     }
+
     return (
         <div className='w-full max-w-[150px]'>
-            {
-                isAvailableCart ? (
-                    <div className='flex w-full h-full'>
-                        <button onClick={decreaseQty} className='bg-green-600 hover:bg-green-700 text-white flex-1 w-full p-1 rounded flex items-center justify-center'><FaMinus /></button>
-
-                        <p className='flex-1 w-full font-semibold px-1 flex items-center justify-center'>{qty}</p>
-
-                        <button onClick={increaseQty} className='bg-green-600 hover:bg-green-700 text-white flex-1 w-full p-1 rounded flex items-center justify-center'><FaPlus /></button>
-                    </div>
-                ) : (
-                    <button onClick={handleADDTocart} className='bg-green-600 hover:bg-green-700 text-white px-2 lg:px-4 py-1 rounded'>
-                        {loading ? <Loading /> : "Add"}
+            {isAvailableCart ? (
+                <div className='flex w-full h-full border border-red-200 rounded'>
+                    <button 
+                        onClick={decreaseQty} 
+                        className='bg-red-500 hover:bg-red-600 text-white flex-1 w-full p-1 rounded-l flex items-center justify-center'
+                    >
+                        <FaMinus />
                     </button>
-                )
-            }
-
+                    <p className='flex-1 w-full font-semibold px-1 flex items-center justify-center bg-red-50 text-gray-800'>{qty}</p>
+                    <button 
+                        onClick={increaseQty} 
+                        className='bg-red-500 hover:bg-red-600 text-white flex-1 w-full p-1 rounded-r flex items-center justify-center'
+                    >
+                        <FaPlus />
+                    </button>
+                </div>
+            ) : (
+                <button 
+                    onClick={handleADDTocart} 
+                    className='w-full bg-red-500 hover:bg-red-600 text-white px-2 lg:px-4 py-1 rounded transition-colors'
+                >
+                    {loading ? <Loading /> : "Add"}
+                </button>
+            )}
         </div>
     )
 }

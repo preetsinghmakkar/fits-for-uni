@@ -72,8 +72,8 @@ const Register = () => {
     }
     return (
         <section className='w-full container mx-auto px-2'>
-            <div className='bg-white my-4 w-full max-w-lg mx-auto rounded p-7'>
-                <p>Welcome to Fits-For-PCTE</p>
+            <div className='bg-white my-4 w-full max-w-lg mx-auto rounded p-7 content-center text-center bold'>
+            <p>Welcome to Fits-For-PCTE</p>
 
                 <form className='grid gap-4 mt-6' onSubmit={handleSubmit}>
                     <div className='grid gap-1'>
@@ -148,12 +148,12 @@ const Register = () => {
                         </div>
                     </div>
 
-                    <button disabled={!valideValue} className={` ${valideValue ? "bg-green-800 hover:bg-green-700" : "bg-gray-500" }    text-white py-2 rounded font-semibold my-3 tracking-wide`}>Register</button>
+                    <button disabled={!valideValue} className={` ${valideValue ? "bg-red-800 hover:bg-gray-600" : "bg-gray-500" }    text-white py-2 rounded font-semibold my-3 tracking-wide`}>Register</button>
 
                 </form>
 
                 <p>
-                    Already have account ? <Link to={"/login"} className='font-semibold text-green-700 hover:text-green-800'>Login</Link>
+                    Already Registered ? <Link to={"/login"} className='font-semibold text-red-700 hover:text-gray-800'>Login</Link>
                 </p>
             </div>
         </section>

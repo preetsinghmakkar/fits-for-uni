@@ -56,13 +56,13 @@ const UserMenu = ({close}) => {
         <div className='text-sm grid gap-1'>
             {
               isAdmin(user.role) && (
-                <Link onClick={handleClose} to={"/dashboard/category"} className='px-2 hover:bg-orange-200 py-1'>Category</Link>
+                <Link onClick={handleClose} to={"/dashboard/category"} className='px-2 hover:bg-orange-200 py-1'>Department</Link>
               )
             }
 
             {
               isAdmin(user.role) && (
-                <Link onClick={handleClose} to={"/dashboard/subcategory"} className='px-2 hover:bg-orange-200 py-1'>Sub Category</Link>
+                <Link onClick={handleClose} to={"/dashboard/subcategory"} className='px-2 hover:bg-orange-200 py-1'>Sizes</Link>
               )
             }
 

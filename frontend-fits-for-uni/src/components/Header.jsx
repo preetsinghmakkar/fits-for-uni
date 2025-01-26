@@ -118,7 +118,6 @@ const Header = () => {
                     {cartItem[0] ? (
                       <div>
                         <p className="text-sm">{totalQty} Items</p>
-                        <p className="text-sm">{DisplayPriceInRupees(totalPrice)}</p>
                       </div>
                     ) : (
                       <p>My Cart</p>
