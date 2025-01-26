@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link, } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import AxiosToastError from '../utils/AxiosToastError'
 import Axios from '../utils/Axios'
 import SummaryApi from '../common/SummaryApi'
@@ -50,59 +50,64 @@ const CategoryWiseProductDisplay = ({ id, name }) => {
         containerRef.current.scrollLeft -= 200
     }
 
-    
-
-  
-
-  const handleRedirectProductListpage = ()=>{
-      const subcategory = subCategoryData.find(sub =>{
-        const filterData = sub.category.some(c => {
-          return c._id == id
+    const handleRedirectProductListpage = ()=>{
+        const subcategory = subCategoryData.find(sub =>{
+            const filterData = sub.category.some(c => {
+                return c._id == id
+            })
+            return filterData ? true : null
         })
+        const url = `/${valideURLConvert(name)}-${id}/${valideURLConvert(subcategory?.name)}-${subcategory?._id}`
+        return url
+    }
 
-        return filterData ? true : null
-      })
-      const url = `/${valideURLConvert(name)}-${id}/${valideURLConvert(subcategory?.name)}-${subcategory?._id}`
-
-      return url
-  }
-
-  const redirectURL =  handleRedirectProductListpage()
+    const redirectURL = handleRedirectProductListpage()
+    
     return (
-        <div>
+        <div className='bg-gray-50 py-4'>
             <div className='container mx-auto p-4 flex items-center justify-between gap-4'>
-                <h3 className='font-semibold text-lg md:text-xl'>{name}</h3>
-                <Link  to={redirectURL} className='text-green-600 hover:text-green-400'>See All</Link>
+                <h3 className='font-semibold text-lg md:text-xl text-gray-800'>{name}</h3>
+                <Link 
+                    to={redirectURL} 
+                    className='text-red-600 hover:text-red-400 font-medium transition-colors'
+                >
+                    See All
+                </Link>
             </div>
-            <div className='relative flex items-center '>
-                <div className=' flex gap-4 md:gap-6 lg:gap-8 container mx-auto px-4 overflow-x-scroll scrollbar-none scroll-smooth' ref={containerRef}>
+            <div className='relative flex items-center'>
+                <div 
+                    className='flex gap-4 md:gap-6 lg:gap-8 container mx-auto px-4 overflow-x-scroll scrollbar-none scroll-smooth' 
+                    ref={containerRef}
+                >
                     {loading &&
-                        loadingCardNumber.map((_, index) => {
-                            return (
-                                <CardLoading key={"CategorywiseProductDisplay123" + index} />
-                            )
-                        })
+                        loadingCardNumber.map((_, index) => (
+                            <CardLoading 
+                                key={"CategorywiseProductDisplay123" + index} 
+                                className='bg-red-50 animate-pulse'
+                            />
+                        ))
                     }
 
-
-                    {
-                        data.map((p, index) => {
-                            return (
-                                <CardProduct
-                                    data={p}
-                                    key={p._id + "CategorywiseProductDisplay" + index}
-                                />
-                            )
-                        })
-                    }
-
+                    {data.map((p, index) => (
+                        <CardProduct
+                            data={p}
+                            key={p._id + "CategorywiseProductDisplay" + index}
+                            className='hover:shadow-md transition-shadow'
+                        />
+                    ))}
                 </div>
-                <div className='w-full left-0 right-0 container mx-auto  px-2  absolute hidden lg:flex justify-between'>
-                    <button onClick={handleScrollLeft} className='z-10 relative bg-white hover:bg-gray-100 shadow-lg text-lg p-2 rounded-full'>
-                        <FaAngleLeft />
+                <div className='w-full left-0 right-0 container mx-auto px-2 absolute hidden lg:flex justify-between'>
+                    <button 
+                        onClick={handleScrollLeft} 
+                        className='z-10 relative bg-white hover:bg-red-50 shadow-lg text-lg p-2 rounded-full border border-gray-200'
+                    >
+                        <FaAngleLeft className='text-gray-700 hover:text-red-600'/>
                     </button>
-                    <button onClick={handleScrollRight} className='z-10 relative  bg-white hover:bg-gray-100 shadow-lg p-2 text-lg rounded-full'>
-                        <FaAngleRight />
+                    <button 
+                        onClick={handleScrollRight} 
+                        className='z-10 relative bg-white hover:bg-red-50 shadow-lg p-2 text-lg rounded-full border border-gray-200'
+                    >
+                        <FaAngleRight className='text-gray-700 hover:text-red-600'/>
                     </button>
                 </div>
             </div>

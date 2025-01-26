@@ -87,7 +87,7 @@ const EditSubCategory = ({close,data,fetchData}) => {
     <section className='fixed top-0 right-0 bottom-0 left-0 bg-neutral-800 bg-opacity-70 z-50 flex items-center justify-center p-4'>
         <div className='w-full max-w-5xl bg-white p-4 rounded'>
             <div className='flex items-center justify-between gap-3'>
-                <h1 className='font-semibold'>Edit Sub Category</h1>
+                <h1 className='font-semibold'>Edit Sizes</h1>
                 <button onClick={close}>
                     <IoClose size={25}/>
                 </button>
@@ -134,7 +134,7 @@ const EditSubCategory = ({close,data,fetchData}) => {
                         </div>
                     </div>
                     <div className='grid gap-1'>
-                        <label>Select Category</label>
+                        <label>Select Department</label>
                         <div className='border focus-within:border-primary-200 rounded'>
                             {/*display value**/}
                             <div className='flex flex-wrap gap-2'>
@@ -167,7 +167,7 @@ const EditSubCategory = ({close,data,fetchData}) => {
                                     })
                                 }}
                             >
-                                <option value={""}>Select Category</option>
+                                <option value={""}>Select Department</option>
                                 {
                                     allCategory.map((category,index)=>{
                                         return(

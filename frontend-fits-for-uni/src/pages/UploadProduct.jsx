@@ -227,7 +227,7 @@ const UploadProduct = () => {
 
                 </div>
                 <div className='grid gap-1'>
-                  <label className='font-medium'>Category</label>
+                  <label className='font-medium'>Department</label>
                   <div>
                     <select
                       className='bg-blue-50 border w-full p-2 rounded'
@@ -245,7 +245,7 @@ const UploadProduct = () => {
                         setSelectCategory("")
                       }}
                     >
-                      <option value={""}>Select Category</option>
+                      <option value={""}>Select Department</option>
                       {
                         allCategory.map((c,index)=>{
                           return(
