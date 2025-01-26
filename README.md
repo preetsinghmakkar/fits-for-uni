@@ -9,12 +9,6 @@
 ### 🛒 Shopping
 - **Add to Cart**: Seamlessly add your desired items to the cart.
 - **Purchase**: Effortlessly buy college uniforms and T-shirts.
-- **Secure Payments**: Powered by **Stripe** for a safe and reliable checkout process.
-
-### 🛍️ Selling
-- **Sell Your Designs**: List your custom uniforms and college T-shirts for others to purchase.
-
----
 
 ## 🖥️ Tech Stack
 
@@ -28,10 +22,6 @@
 - Express.js
 - MongoDB (Database)
 
-### **Payment Gateway**:
-- Stripe
-
----
 
 ## 📂 Current Status
 ### In Progress...
